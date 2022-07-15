@@ -36,21 +36,6 @@ export default function addMention(
     entityKey
   );
 
-  // If the mention is inserted at the end, a space is appended right after for
-  // a smooth writing experience.
-  const blockKey = mentionTextSelection.getAnchorKey();
-  const blockSize = editorState
-    .getCurrentContent()
-    .getBlockForKey(blockKey)
-    .getLength();
-  if (blockSize === end) {
-    mentionReplacedContent = Modifier.insertText(
-      mentionReplacedContent,
-      mentionReplacedContent.getSelectionAfter(),
-      ' '
-    );
-  }
-
   const newEditorState = EditorState.push(
     editorState,
     mentionReplacedContent,
